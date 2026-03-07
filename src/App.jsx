@@ -1,5 +1,4 @@
-import { useState } from 'react' 
-import './App.css'
+import { useState } from 'react'  
 import { BrowserRouter, Form, Route, Router, Routes } from 'react-router-dom'
 import Layout from './Pages/Layout'
 import Patients from './Pages/Patients'

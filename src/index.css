@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+.background-gradient{
+    background-image: linear-gradient(to right, #bdc4c4, #aac3c7, #98c1ce, #89bdd8, #80b8e2, #7bbae6, #75bbeb, #6ebdef, #68c6ec, #6bcfe5, #77d6de, #88dcd6);
+}
+ 
