@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import signup from '../assets/signup.png'
 import axios from "axios"
+import { Link } from 'react-router-dom'
 
-const Signup = () => {
-  const [users, setUsers] = useState([]);
+
+const Signup = () => { 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,9 +51,9 @@ const Signup = () => {
   return <>
     <div className=' w-full h-screen p-2 flex justify-center ' >
       <div className=' w-[80%] h-full flex justify-center items-center bg-[#ffffff]  rounded-4xl ' >
-        <div className=' w-[50%] h-full flex justify-center items-center bg-[#5484FE] rounded-4xl ' >
+        <div className=' w-[50%] h-full flex justify-center items-center bg-[#0329ff] rounded-4xl p-2 ' >
           <img src={signup}
-            className=' h-[80%] '
+            className=' h-[70%] rounded-4xl  '
             alt="" />
         </div>
         {/* ======= Form ======== */}
@@ -64,25 +65,25 @@ const Signup = () => {
             <h1 className=' text-3xl uppercase font-bold text-center ' >Create Account</h1>
             <label htmlFor="">Full Name</label>
             <input type="text" name='name' placeholder='Enter Full Name' required
-              className=' border-2 p-2  rounded outline-0  '
+              className=' bg-[#ffffff] shadow p-2  rounded outline-0  '
               value={formData.name}
               onChange={handleChange}
             />
             <label htmlFor="">Email</label>
             <input type="email" name="email" placeholder='Enter Email' required
-              className=' border-2   p-2 rounded outline-0  '
+              className=' bg-[#ffffff] shadow p-2  rounded outline-0  '
               value={formData.email}
               onChange={handleChange}
             />
             <label htmlFor="">Password</label>
             <input type="password" name="password" placeholder='Create Password' required
-              className=' border-2   p-2 rounded outline-0 '
+              className='bg-[#ffffff] shadow p-2  rounded outline-0 '
               value={formData.password}
               onChange={handleChange}
             />
             <label htmlFor="">Role</label>
             <select name="roleTypes"
-              className=' border-2   p-2 rounded outline-0 cursor-pointer '
+              className=' bg-[#ffffff] shadow p-2  rounded outline-0 cursor-pointer '
               value={formData.roleTypes}
               onChange={handleChange}
             >
@@ -91,8 +92,12 @@ const Signup = () => {
               <option value="PATIENT">PATIENT</option>
               <option value="DOCTOR">DOCTOR</option>
             </select>
-            <button type='submit' className=' bg-[#5484FE] p-2 rounded text-white font-bold cursor-pointer ' >Sign Up</button>
-
+            <button type='submit' className=' bg-[#0329ff] p-2 rounded text-white font-bold cursor-pointer ' >Sign Up</button>
+            <p className='text-center' >already have an account ? 
+              <Link className=' text-[#0329ff] ' to="/login" >
+              login
+              </Link>
+            </p>
           </form>
         </div>
       </div>
