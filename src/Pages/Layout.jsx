@@ -5,10 +5,10 @@ import Footer from './Footer'
 
 const Layout = () => {
   return (
-    <div className=' background-gradient ' >
-        <header><Navbar/></header>
-        <main><Outlet/></main>
-        <footer><Footer/></footer>
+    <div>
+      {/* <header><Navbar /></header> */}
+      <main><Outlet /></main>
+      {/* <footer><Footer /></footer> */}
     </div>
   )
 }

@@ -4,7 +4,7 @@ const Footer = () => {
   return <>
   {/* ================= Footer ================= */}
 
-<footer className="w-full bg-[#111] text-white pt-10 pb-5">
+<footer className="w-full bg-[#011141] text-white pt-10 pb-5">
 
   <div className="flex flex-wrap justify-around gap-10 px-10">
 

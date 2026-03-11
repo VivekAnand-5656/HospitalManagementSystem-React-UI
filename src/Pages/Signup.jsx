@@ -94,7 +94,7 @@ const Signup = () => {
             </select>
             <button type='submit' className=' bg-[#0329ff] p-2 rounded text-white font-bold cursor-pointer ' >Sign Up</button>
             <p className='text-center' >already have an account ? 
-              <Link className=' text-[#0329ff] ' to="/login" >
+              <Link className=' text-[#0329ff] ' to="/" >
               login
               </Link>
             </p>
