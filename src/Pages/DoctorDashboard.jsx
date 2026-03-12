@@ -7,6 +7,7 @@ import Patients from './Patients';
 import Appointments from './Appointments';
 import Profile from './Profile';
 import DashboardHome from './DashboardHome';
+import AppointmentsSec from './AppointmentsSec';
 
 const DoctorDashboard = () => {
     const { activePage } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const DoctorDashboard = () => {
     const renderPage = () => {
         switch (activePage) {  
             case 'dashboard': return <DashboardHome />;
-            case 'appointments': return <Appointments />;
+            case 'appointments': return <AppointmentsSec />;
             case 'patients': return <Patients />;
             case 'doctors': return <Doctor />;
             case 'reports': return <Report />;

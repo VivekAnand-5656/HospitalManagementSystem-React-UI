@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({children}) => {
     const [token, setToken] = useState(()=> localStorage.getItem("token"));
     const [isLoggedIn, setIsLoggedIn] = useState(()=> !!localStorage.getItem("token"));
-    const [role, setRole] = useState([]);
+    const [role, setRole] = useState(()=>localStorage.getItem("userrole"));
     const [activePage,setActivePage] = useState('dashboard')
     const [id,setId] = useState(()=> localStorage.getItem("userId"));
     const [doctor,setDoctor] = useState(null);
@@ -26,28 +26,26 @@ const AuthProvider = ({children}) => {
         
         setDoctor(dtr);
     }
-
-
     const login=(jwt)=>{
         setToken(jwt)
         setIsLoggedIn(true);
         localStorage.setItem("token",jwt);
     }
-
     const logout = ()=>{
         setToken(null)
         setIsLoggedIn(false);
         localStorage.removeItem("token");
-        localStorage.removeItem("userId");
+        localStorage.removeItem("userId"); 
     } 
 
     const roles = (r)=>{
         setRole(r);
+        localStorage.setItem("userrole",r);
     }
 
   return ( 
     <AuthContext.Provider value={
-        {token,isLoggedIn,login,logout,roles,activePage,setActivePage,userId,id,doctor,setDoctorInfo,
+        {token,isLoggedIn,login,logout,role,roles,activePage,setActivePage,userId,id,doctor,setDoctorInfo,
             cardName,setCardsNames
         }} >
         {children}

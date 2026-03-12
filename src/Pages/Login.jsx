@@ -8,7 +8,7 @@ import { toast, Bounce } from 'react-toastify'
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login,roles,userId} = useContext(AuthContext);
+  const { login,roles,role,userId} = useContext(AuthContext);
 
 
   const [userData, setUserData] = useState({
@@ -35,16 +35,13 @@ const Login = () => {
       const jwtToken = response.data.jwt;
       const userRole = response.data.roleTypes;
       const loginUserId = response.data.userId;
-      userId(loginUserId); 
-      // // --------- Set Doctor Info -------
-      // const res = await axios.get(`http://localhost:8080/api/doctors/doctor/id/${loginUserId}`)
-      // setDoctorInfo(res.data)
+      userId(loginUserId);  
 
       // ----------- Role Sets ----------
 
-      roles(userRole);
-      console.log("User Role : ",userRole);
-      console.log("User id : ",loginUserId); 
+      roles(userRole); 
+      console.log("User id : ",loginUserId);  
+      console.log("User Role : ",role); 
       // if(userRole === "ADMIN" ){
       //   roles(userRole);
       //   console.log("User Role : ",userRole.data);
