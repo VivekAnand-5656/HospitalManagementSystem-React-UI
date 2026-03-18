@@ -6,10 +6,12 @@ const AuthProvider = ({children}) => {
     const [token, setToken] = useState(()=> localStorage.getItem("token"));
     const [isLoggedIn, setIsLoggedIn] = useState(()=> !!localStorage.getItem("token"));
     const [role, setRole] = useState(()=>localStorage.getItem("userrole"));
-    const [activePage,setActivePage] = useState('dashboard')
+    const [activePage,setActivePage] = useState('dashbadmindashboardoard')
     const [id,setId] = useState(()=> localStorage.getItem("userId"));
     const [doctor,setDoctor] = useState(null);
     const [cardName,setCardName] = useState([]);
+    // ---- Dashboard active Pages ----
+    
 
     // ---- set Cards Name of Totals ------
     const setCardsNames = (name)=>{

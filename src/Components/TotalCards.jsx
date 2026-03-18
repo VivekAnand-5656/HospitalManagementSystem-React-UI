@@ -1,15 +1,25 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import React from 'react'
 
-const TotalCards = ({text,num}) => {
-    const {cardName,setCardNames} = useContext(AuthContext);
-  return (
-    <div className=' bg-[#ffffff] w-[20%] p-2 rounded cursor-pointer ' >
-        <h3 className=' text-[1.2rem] font-semibold '  >{text}</h3>
-        <p className=' text-2xl font-semibold text-[#fd0303] ' >{num}</p>
-        <p className=' text-[#ff8a04] ' >pending</p>
-    </div>
-  )
+const TotalCards = ({ name }) => {
+    return (
+        <div className='h-15.5 bg-linear-to-r from-[#0b7f8c] to-[#0a5f69] 
+    flex items-center justify-between p-5 rounded-xl text-white 
+    cursor-pointer shadow-lg hover:shadow-2xl hover:scale-105 
+    transition-all duration-300'>
+
+            <div className='flex items-center gap-4'>
+                <div className='bg-white/20 p-3 rounded-full'>
+                    <i className="fa-solid fa-user-doctor text-2xl"></i>
+                </div>
+
+                <div>
+                    <h1 className='text-[1.2rem] font-semibold tracking-wide'>{name}</h1>
+                    <h2 className='text-sm font-bold'>25</h2>
+                </div>
+            </div>
+
+        </div>
+    )
 }
 
 export default TotalCards
