@@ -10,6 +10,11 @@ const AuthProvider = ({children}) => {
     const [id,setId] = useState(()=> localStorage.getItem("userId"));
     const [doctor,setDoctor] = useState(null);
     const [cardName,setCardName] = useState([]);
+    const [todayAppointments,setTodayAppointments] = useState([]); // Today Appointments 
+    const [allDoctors,setAllDoctors] = useState([])    // All Doctors 
+    const [departments,setDepartments] = useState([])    // All Departments 
+    const [allPatients,setAllPatients] = useState([])    // All Patients
+    const [allAppointments,setAllAppointments] = useState([])   // All Appointments 
     // ---- Dashboard active Pages ----
     
 
@@ -48,7 +53,8 @@ const AuthProvider = ({children}) => {
   return ( 
     <AuthContext.Provider value={
         {token,isLoggedIn,login,logout,role,roles,activePage,setActivePage,userId,id,doctor,setDoctorInfo,
-            cardName,setCardsNames
+            cardName,setCardsNames, todayAppointments,setTodayAppointments, allDoctors,setAllDoctors,departments,setDepartments,
+            allPatients,setAllPatients,allAppointments,setAllAppointments
         }} >
         {children}
     </AuthContext.Provider>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TotalCards = ({ name }) => {
+const TotalCards = ({ name,num }) => {
     return (
         <div className='h-15.5 bg-linear-to-r from-[#0b7f8c] to-[#0a5f69] 
     flex items-center justify-between p-5 rounded-xl text-white 
@@ -14,7 +14,7 @@ const TotalCards = ({ name }) => {
 
                 <div>
                     <h1 className='text-[1.2rem] font-semibold tracking-wide'>{name}</h1>
-                    <h2 className='text-sm font-bold'>25</h2>
+                    <h2 className='text-sm font-bold'>{num}</h2>
                 </div>
             </div>
 

@@ -1,65 +1,118 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import logo from "../assets/logo.png"
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import { toast, Bounce } from 'react-toastify';
 
 const Sidebar = () => {
-    // const [activePage, setActivePage] = useState("admindashboard")
+
     const { activePage, setActivePage, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const logingout = () => {
         logout();
         navigate("/")
-        toast.success('Logout successfull ', {
+        toast.success('Logout successful', {
             position: "top-center",
             autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
             theme: "light",
             transition: Bounce,
         });
     }
 
-
     return (
-        <>
-            <div className=' w-[15%] bg-[#e2e7fd]  ' >
-                <div className=' w-full h-[10%] bg-[#ffffff] flex justify-center items-center ' >
-                    <h1 className=' text-2xl font-bold text-[#0612f1] ' >Hospital Care</h1>
-                    <img src={logo} alt="" className=' w-[15%] h-[50%] justify-self-center  ' />
+        <div className='w-[15%] h-screen bg-[#0225bf] text-white flex flex-col justify-between left-0 top-0'>
+
+            {/* -------- Top Section -------- */}
+            <div>
+
+                {/* Logo */}
+                <div className='w-full h-[70px] bg-[#ffffff] flex items-center justify-center gap-2'>
+                    <h1 className='text-lg font-bold text-black'>Hospital Care</h1>
+                    <img src={logo} alt="" className='w-[30px]' />
                 </div>
-                <p className=' bg-[#0612f1] text-white font-semibold text-center p-2 ' >Admin Dashboard </p>
-                <ul className=' h-[50%] flex flex-col gap-3  ' >
-                    <li className='w-full ' ><button
-                        className={`${activePage === "admindashboard" ? "bg-[#1611a4] w-full p-2 font-semibold text-white cursor-pointer " : "w-full cursor-pointer p-2  "}`}
-                        onClick={() => setActivePage("admindashboard")}
-                    >Dashboard</button></li>
-                    <li><button
-                        className={`${activePage === "adminDoctor" ? "bg-[#1611a4] w-full p-2 font-semibold text-white cursor-pointer " : "w-full p-2 cursor-pointer  "}`}
-                        onClick={() => setActivePage("adminDoctor")}
-                    >Doctor</button></li>
-                    <li><button
-                        className={`${activePage === "adminPatient" ? "bg-[#1611a4] w-full p-2 font-semibold text-white cursor-pointer " : "w-full p-2 cursor-pointer  "}`}
-                        onClick={() => setActivePage("adminPatient")}
-                    >Patient</button></li>
-                    <li><button
-                        className={`${activePage === "adminAppointments" ? "bg-[#1611a4] w-full p-2 font-semibold text-white cursor-pointer " : "w-full p-2 cursor-pointer  "}`}
-                        onClick={() => setActivePage("adminAppointments")}
-                    >Appointments</button></li>
-                    <li><button
-                        className={`${activePage === "adminReports" ? "bg-[#1611a4] w-full p-2 font-semibold text-white cursor-pointer " : "w-full p-2 cursor-pointer  "}`}
-                        onClick={() => setActivePage("adminReports")}
-                    >Reports</button></li>
+
+                <p className='text-white font-semibold text-center py-2'>
+                    Admin Dashboard
+                </p>
+
+                {/* Menu */}
+                <ul className='flex flex-col gap-2 px-2'>
+
+                    <li>
+                        <button
+                            className={`w-full text-left p-2 rounded ${activePage === "admindashboard"
+                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
+                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
+                                }`}
+                            onClick={() => setActivePage("admindashboard")}
+                        >
+                            <i className="fa-solid fa-gauge mr-2"></i> Dashboard
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            className={`w-full text-left p-2 rounded ${activePage === "adminDoctor"
+                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
+                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
+                                }`}
+                            onClick={() => setActivePage("adminDoctor")}
+                        >
+                            <i className="fa-solid fa-user-doctor mr-2"></i> Doctor
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            className={`w-full text-left p-2 rounded ${activePage === "adminPatient"
+                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
+                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
+                                }`}
+                            onClick={() => setActivePage("adminPatient")}
+                        >
+                            <i className="fa-solid fa-bed mr-2"></i> Patient
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            className={`w-full text-left p-2 rounded ${activePage === "adminAppointments"
+                                   ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
+                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
+                                }`}
+                            onClick={() => setActivePage("adminAppointments")}
+                        >
+                            <i className="fa-solid fa-calendar-days mr-2"></i> Appointments
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            className={`w-full text-left p-2 rounded ${activePage === "adminReports"
+                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
+                                    : "hover:bg-[#ffffff] hover:text-black  text-white transition-all ease-linear cursor-pointer font-semibold "
+                                }`}
+                            onClick={() => setActivePage("adminReports")}
+                        >
+                            📊 Reports
+                        </button>
+                    </li>
+
                 </ul>
+            </div>
+
+            {/* -------- Bottom Logout -------- */}
+            <div className='p-2'>
                 <button
                     onClick={logingout}
-                    className=' bg-[#1611a4] font-bold text-white w-full p-2 cursor-pointer  ' >Logout</button>
+                    className='bg-[#ffffff] text-black w-full p-2 rounded hover:bg-[#010764] transition-all ease-in-out hover:text-white cursor-pointer'
+                >
+                    <i className="fa-solid fa-power-off mr-2"></i> Logout
+                </button>
             </div>
-        </>
+
+        </div>
     )
 }
 

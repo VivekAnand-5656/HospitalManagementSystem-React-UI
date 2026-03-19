@@ -23,13 +23,8 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/auth/login', 
-        formData
-        // {
-        //   headers: {
-        //     'Authorization': `Bearer ${response.data.jwt}`, // put your token here
-        //   },
-        // }
+        'http://localhost:8080/api/auth/login'
+
       );
       const token = response.data.jwt;
       login(token)
@@ -52,18 +47,6 @@ const AdminLogin = () => {
         password: ""
       })
       navigate("admindashboard")
-
-      //  const response = await axios.post(
-      //   'https://yourapi.com/admin/login', // replace with your API
-      //   formData,
-      //   {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': 'Bearer YOUR_API_KEY_OR_TOKEN', // put your token here
-      //     },
-      //   }
-      // );
-
     } catch (error) {
       console.error("Error : ", error)
       toast.error('Something went wrorng !', {
