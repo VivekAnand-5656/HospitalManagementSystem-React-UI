@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import AdminLogin from '../AuthPages/AdminLogin';
 import DoctorLogin from '../AuthPages/DoctorLogin';
 import PatientLogin from '../AuthPages/PatientLogin';
+import { AuthContext } from '../context/AuthContext';
+import Signup from '../AuthPages/Signup';
 
 const Home = () => {
+    const { signup, setSignup } = useContext(AuthContext);
     // --------------- Login Navigation --------
     const [activeLogin, setActiveLogin] = useState("adminlogin");
     const renderLogin = () => {
+        if (signup) {
+            return <Signup />
+        }
         if (activeLogin === "adminlogin") {
             return <AdminLogin />
         }
@@ -17,6 +23,8 @@ const Home = () => {
         if (activeLogin === "patientlogin") {
             return <PatientLogin />
         }
+
+
     }
     // .--------------------------------------
     return (
@@ -25,7 +33,7 @@ const Home = () => {
                 {/* --- Headings --- */}
                 <div className=' w-[35%] h-full flex flex-col justify-center gap-2 p-2  ' >
                     <h1 className=' text-7xl font-bold   ' >Hopital Care System</h1>
-                    <p className=' font-semibold ' >Moder Healthcare Solution to Manage Your Hospital Efficiently</p>
+                    <p className=' font-semibold ' >Modern Healthcare Solution to Manage Your Hospital Efficiently</p>
                 </div>
                 <div className='w-[60%] h-full flex flex-col justify-center items-center  p-2 ' >
                     <div className=' w-[50%] h-[80%] p-2 shadow-2xl rounded-2xl flex flex-col items-center gap-2 bg-[#ffffff] ' >
@@ -35,19 +43,28 @@ const Home = () => {
                         </div>
                         <div className='  rounded flex justify-center gap-2  '>
                             <button
-                                onClick={() => setActiveLogin("adminlogin")}
+                                onClick={() => {
+                                    setActiveLogin("adminlogin");
+                                    setSignup(false)
+                                }}
                                 className={`px-3 py-1 rounded ${activeLogin === "adminlogin" ? "bg-blue-600 text-white" : "border cursor-pointer"}`}
                             >
                                 Admin
                             </button>
                             <button
-                                onClick={() => setActiveLogin("doctorlogin")}
+                                onClick={() => {
+                                    setActiveLogin("doctorlogin");
+                                    setSignup(false)
+                                }}
                                 className={`px-3 py-1 rounded ${activeLogin === "doctorlogin" ? "bg-blue-600 text-white" : "border cursor-pointer "}`}
                             >
                                 Doctor
                             </button>
                             <button
-                                onClick={() => setActiveLogin("patientlogin")}
+                                onClick={() => {
+                                    setActiveLogin("patientlogin");
+                                    setSignup(false)
+                                }}
                                 className={`px-3 py-1 rounded ${activeLogin === "patientlogin" ? "bg-blue-600 text-white" : "border cursor-pointer"}`}
                             >
                                 Patient

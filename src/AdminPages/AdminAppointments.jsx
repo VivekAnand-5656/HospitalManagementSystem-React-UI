@@ -41,7 +41,7 @@ const AdminAppointments = () => {
 
               <table className="w-full border-collapse  text-left text-[1rem]">
 
-                <thead className="bg-[#0612f1] text-white text-[1rem] p-2  ">                
+                <thead className="bg-[#07275A] text-white text-[0.9rem] p-2  ">                
                     <tr>
                       <th className="px-2 py-1">S.N.</th>
                       <th className="px-2 py-1">ID</th>
@@ -59,7 +59,7 @@ const AdminAppointments = () => {
                   {allAppointments.map((aptn, index) => (
                     <tr
                       key={index}
-                      className="border-b hover:bg-[#f3f4fb] transition"
+                     className="text-center border-t hover:bg-[#07275A] hover:scale-101 hover:text-white cursor-pointer ease-linear transition-all text-[0.8rem]  "
                     >
 
                       <td className="px-2 py-2">{index + 1}</td>

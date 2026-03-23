@@ -7,6 +7,8 @@ import AdminPatient from '../AdminPages/AdminPatient';
 import AdminAppointments from '../AdminPages/AdminAppointments';
 import AdminReports from '../AdminPages/AdminReports';
 import TopBar from './TopBar';
+import PatientDashboard from '../PatientPages/PatientDashboard';
+import PatientAppointment from '../PatientPages/PatientAppointment';
 
 const DashboardLayout = () => {
     
@@ -17,7 +19,10 @@ const DashboardLayout = () => {
         if (activePage === "adminPatient") return <AdminPatient />
         if (activePage === "adminAppointments") return <AdminAppointments />
         if (activePage === "adminReports") return <AdminReports />
-        return <DashboardHome/>
+        // ------------ Patient Dasboard ---------
+        if (activePage === "patientdashboard") return <PatientDashboard/>
+        if (activePage === "patientappointment") return <PatientAppointment/>
+        // return <DashboardHome/>
     }
   return ( 
     <>

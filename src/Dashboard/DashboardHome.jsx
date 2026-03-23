@@ -10,7 +10,7 @@ const DashboardHome = () => {
         token,
         todayAppointments, setTodayAppointments,
         allDoctors, setAllDoctors,
-        setDepartments,
+        setDepartments, 
         setAllPatients, allPatients,
         allAppointments, setAllAppointments
     } = useContext(AuthContext);
@@ -86,7 +86,7 @@ const DashboardHome = () => {
                                     </div>
                                 ) : (
                                     <table className="w-full text-sm text-left">
-                                        <thead className="bg-[#0612f1] text-white">
+                                        <thead className="bg-[#07275A] text-white">
                                             <tr>
                                                 <th className="p-2">S.N.</th>
                                                 <th className="p-2">ID</th>
@@ -95,13 +95,14 @@ const DashboardHome = () => {
                                                 <th className="p-2">Reason</th>
                                                 <th className="p-2">Doctor</th>
                                                 <th className="p-2">Patient</th>
-                                                <th className="p-2">Status</th>
+                                                <th className="p-2">Status</th> 
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                             {todayAppointments.map((apt, i) => (
-                                                <tr key={i} className="border-b hover:bg-gray-50">
+                                                <tr key={i} 
+                                                className="text-center border-t hover:bg-[#07275A] hover:scale-101 hover:text-white cursor-pointer ease-linear transition-all text-[0.8rem]  " >
                                                     <td className="p-2">{i + 1}</td>
                                                     <td className="p-2">{apt.id}</td>
                                                     <td className="p-2">{apt.appointmentTime} AM</td>
@@ -113,7 +114,7 @@ const DashboardHome = () => {
                                                         <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">
                                                             {apt.appointmentStatus}
                                                         </span>
-                                                    </td>
+                                                    </td> 
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -129,7 +130,7 @@ const DashboardHome = () => {
 
                         <div className="max-h-[300px] overflow-auto">
                             <table className="w-full text-sm text-left">
-                                <thead className="bg-[#0612f1] text-white">
+                                <thead className="bg-[#07275A] text-white">
                                     <tr>
                                         <th className="p-2">S.N.</th>
                                         <th className="p-2">ID</th>
@@ -142,7 +143,8 @@ const DashboardHome = () => {
 
                                 <tbody>
                                     {allDoctors.map((dtr, i) => (
-                                        <tr key={i} className="border-b hover:bg-gray-50">
+                                        <tr key={i} 
+                                        className="text-center border-t hover:bg-[#07275A] hover:scale-101 hover:text-white cursor-pointer ease-linear transition-all text-[0.8rem]  " >
                                             <td className="p-2">{i + 1}</td>
                                             <td className="p-2">{dtr.id}</td>
                                             <td className="p-2">{dtr.name}</td>

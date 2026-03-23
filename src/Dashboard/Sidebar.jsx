@@ -6,7 +6,7 @@ import { toast, Bounce } from 'react-toastify';
 
 const Sidebar = () => {
 
-    const { activePage, setActivePage, logout } = useContext(AuthContext);
+    const { activePage, setActivePage, logout, roles } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const logingout = () => {
@@ -21,7 +21,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className='w-[15%] h-screen bg-[#0225bf] text-white flex flex-col justify-between left-0 top-0'>
+        <div className='w-[15%] h-screen bg-[#07275A] text-white flex flex-col justify-between left-0 top-0'>
 
             {/* -------- Top Section -------- */}
             <div>
@@ -33,73 +33,119 @@ const Sidebar = () => {
                 </div>
 
                 <p className='text-white font-semibold text-center py-2'>
-                    Admin Dashboard
+                    {roles?.[0]} Dashboard
                 </p>
 
                 {/* Menu */}
-                <ul className='flex flex-col gap-2 px-2'>
+                {
 
-                    <li>
-                        <button
-                            className={`w-full text-left p-2 rounded ${activePage === "admindashboard"
-                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
-                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
-                                }`}
-                            onClick={() => setActivePage("admindashboard")}
-                        >
-                            <i className="fa-solid fa-gauge mr-2"></i> Dashboard
-                        </button>
-                    </li>
+                    roles && roles.length === 0 ? (
+                        <div className="text-white p-4">Loading...</div>
+                    ) : roles.includes("ADMIN") ? (
 
-                    <li>
-                        <button
-                            className={`w-full text-left p-2 rounded ${activePage === "adminDoctor"
-                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
-                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
-                                }`}
-                            onClick={() => setActivePage("adminDoctor")}
-                        >
-                            <i className="fa-solid fa-user-doctor mr-2"></i> Doctor
-                        </button>
-                    </li>
+                        // ✅ ADMIN
+                        <ul className='flex flex-col gap-2 px-2'>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "admindashboard"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("admindashboard")}
+                                >
+                                    <i className="fa-solid fa-gauge mr-2"></i> Dashboard
+                                </button>
+                            </li>
 
-                    <li>
-                        <button
-                            className={`w-full text-left p-2 rounded ${activePage === "adminPatient"
-                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
-                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
-                                }`}
-                            onClick={() => setActivePage("adminPatient")}
-                        >
-                            <i className="fa-solid fa-bed mr-2"></i> Patient
-                        </button>
-                    </li>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "adminDoctor"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("adminDoctor")}
+                                >
+                                    <i className="fa-solid fa-user-doctor mr-2"></i> Doctor
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "adminPatient"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("adminPatient")}
+                                >
+                                    <i class="fa-solid fa-bed"></i> Patients
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "adminAppointments"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("adminAppointments")}
+                                >
+                                    <i className="fa-solid fa-calendar-days mr-2"></i> Appointments
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "adminReports"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("adminReports")}
+                                >
+                                    <i className="fa-solid fa-calendar-days mr-2"></i> Reports
+                                </button>
+                            </li>
+                        </ul>
+                        
 
-                    <li>
-                        <button
-                            className={`w-full text-left p-2 rounded ${activePage === "adminAppointments"
-                                   ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
-                                    : "hover:bg-[#ffffff] hover:text-black text-white transition-all ease-linear cursor-pointer font-semibold "
-                                }`}
-                            onClick={() => setActivePage("adminAppointments")}
-                        >
-                            <i className="fa-solid fa-calendar-days mr-2"></i> Appointments
-                        </button>
-                    </li>
+                    ) : roles.includes("PATIENT") ? (
 
-                    <li>
-                        <button
-                            className={`w-full text-left p-2 rounded ${activePage === "adminReports"
-                                    ? "bg-[#ffffff] text-[#0903ae] font-semibold cursor-pointer  "
-                                    : "hover:bg-[#ffffff] hover:text-black  text-white transition-all ease-linear cursor-pointer font-semibold "
-                                }`}
-                            onClick={() => setActivePage("adminReports")}
-                        >
-                            📊 Reports
-                        </button>
-                    </li>
+                        // ✅ PATIENT
+                        <ul className='flex flex-col gap-2 px-2'>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "patientdashboard"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer"
+                                        }`}
+                                    onClick={() => setActivePage("patientdashboard")}
+                                >
+                                    <i className="fa-solid fa-gauge mr-2"></i> Dashboard
+                                </button>
+                            </li>
 
-                </ul>
+                            <li>
+                                <button
+                                    className={`w-full text-left p-2 rounded ${activePage === "patientappointment"
+                                        ? "bg-white text-[#0903ae] font-semibold cursor-pointer"
+                                        : "hover:bg-white hover:text-black text-white font-semibold cursor-pointer "
+                                        }`}
+                                    onClick={() => setActivePage("patientappointment")}
+                                >
+                                    <i className="fa-solid fa-calendar-days mr-2"></i> My Appointments
+                                </button>
+                            </li>
+                        </ul>
+
+                    ) : roles.includes("DOCTOR") ? (
+
+                        // ✅ DOCTOR
+                        <ul className='flex flex-col gap-2 px-2 text-white'>
+                            <li className="p-2">Dashboard</li>
+                            <li className="p-2">Appointments</li>
+                        </ul>
+
+                    ) : null
+
+                }
+
+
             </div>
 
             {/* -------- Bottom Logout -------- */}

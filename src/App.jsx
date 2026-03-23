@@ -12,6 +12,9 @@ import AdminDoctor from './AdminPages/AdminDoctor';
 import AdminPatient from './AdminPages/AdminPatient';
 import AdminAppointments from './AdminPages/AdminAppointments';
 import AdminReports from './AdminPages/AdminReports';
+import Signup from './AuthPages/Signup';
+import PatientDashboard from './PatientPages/PatientDashboard';
+import PatientAppointment from './PatientPages/PatientAppointment';
 
 
 function App() {
@@ -28,10 +31,15 @@ function App() {
             </Route>
             {/* --------- Dashboard ------- */}
             <Route path='admindashboard' element={<DashboardLayout/>} >
+            {/* -------------------- Admin Dashboard ------------- */}
               <Route path='adminDoctor' element={<AdminDoctor/>} />
               <Route path='adminPatient' element={<AdminPatient/>} />
               <Route path='adminAppointments' element={<AdminAppointments/>} />
               <Route path='adminReports' element={<AdminReports/>} />
+              <Route path='signup' element={<Signup/>} />
+              {/* ------------------ Patient Dashboard --------------- */}
+              <Route path='patientdashboard' element={<PatientDashboard/>} />
+              <Route path='patientappointment' element={<PatientAppointment/>} />
             </Route>
           </Routes>
         </BrowserRouter>

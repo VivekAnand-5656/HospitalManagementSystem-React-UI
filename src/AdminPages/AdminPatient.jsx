@@ -17,13 +17,13 @@ const AdminPatient = () => {
           {/* ----- TopBar ----- */}
 
           <div className=' w-full flex bg-[#ffffff] p-2 flex-wrap justify-between gap-3 items-center ' >
-            <input type="search" name="" id="" placeholder='Search Patients.....'
-              className=' w-[70%] border-2 border-[#bbbbbb] p-2 rounded-lg outline-0   ' />
-            <select name="" id="" className=' font-bold p-2 ' >
+            <input type="search" name="search" id="" placeholder='Search Patients.....'
+              className=' w-[50%] border-2 border-[#bbbbbb] p-2 rounded-lg outline-0   ' />
+            <select name="" id="" className=' font-bold p-2 rounded cursor-pointer outline-0 hover:bg-[#07275A] hover:text-white ' >
               <option value="" selected >All Departments</option>
               {
                 departments.map((dpts, index) => (
-                  <option value={dpts} key={index} >{dpts}</option>
+                  <option className=' hover:bg-[#4ded12] ' value={dpts} key={index} >{dpts}</option>
                 ))
               }
             </select>
@@ -40,7 +40,7 @@ const AdminPatient = () => {
 
               <table className="w-full border-collapse  text-left text-[1rem]">
 
-                <thead className="bg-[#0612f1] text-white text-[1rem] p-2  ">
+                <thead className="bg-[#07275A] text-white text-[1rem] p-2  ">
                   <tr>
                     <th className="px-2 py-1">S.N.</th>
                     <th className="px-2 py-1">ID</th>
@@ -59,7 +59,7 @@ const AdminPatient = () => {
                   {allPatients.map((ptn, index) => (
                     <tr
                       key={index}
-                      className="border-b hover:bg-[#f3f4fb] transition"
+                      className="text-center border-t hover:bg-[#07275A] hover:scale-101 hover:text-white cursor-pointer ease-linear transition-all text-[0.8rem]  "
                     >
 
                       <td className="px-2 py-2">{index + 1}</td>

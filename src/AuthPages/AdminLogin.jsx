@@ -3,34 +3,51 @@ import { useNavigate } from 'react-router-dom';
 import { toast, Bounce } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import Signup from './Signup';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login,setCurentUser,signup,setSignup,setRoles } = useContext(AuthContext);
+  
 
   const [show, setShow] = useState(false);
+  const [curRole,setCurRole] = useState();
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   })
+  const clickSignup =(e)=>{
+    e.preventDefault()
+    setSignup(true);
+  }
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   }
-
+// https://hospitalmanagementsystem-springboot-production-f2ed.up.railway.app/
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/auth/login'
+        'http://localhost:8080/api/auth/login', formData
+        // 'https://hospitalmanagementsystem-springboot-production-f2ed.up.railway.app/api/auth/login', formData
 
       );
       const token = response.data.jwt;
-      login(token)
+      
+      setCurentUser(response.data.email)
       console.log("JWT : ", token);
       console.log("ID : ", response.data.userId);
-      // if (formData.email === "vivek@gmail.com" && formData.password === "123456") {
+      console.log("User Email : ", response.data.email);
+      console.log("Role : ",response.data.roles)
+      const roles = response.data.roles;
+      // roles.forEach(role => {
+      //   console.log("Role is : ",role)
+      //   setCurRole(role);
+      // }); 
+      login(token,roles)
       toast.success('Login Successfully ', {
         position: "top-center",
         autoClose: 2000,
@@ -92,7 +109,9 @@ const AdminLogin = () => {
 
       </div>
       <button type='submit' className='w-full font-semibold rounded cursor-pointer p-2 bg-[#0411f8] text-white ' >Login</button>
-      <p className=' text-center ' >Don't have an account? <a href="" className=' text-[#0411f8] ' >Register here</a></p>
+      <p className=' text-center ' >Don't have an account? <a href="" 
+      onClick={clickSignup}
+      className=' text-[#0411f8] ' >Register here</a></p>
     </form>
   )
 }

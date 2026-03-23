@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useContext, useState } from 'react'
 import { toast, Bounce } from 'react-toastify';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const PatientLogin = () => {
+    const { setCurentUser, login,userId } = useContext(AuthContext);
     const [show, setShow] = useState(false);
+    const [curRole,setCurRole] = useState();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     })
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,46 +22,35 @@ const PatientLogin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (formData.email === "vivek@gmail.com" && formData.password === "123456") {
-                toast.success('Login Successfully ', {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
-                setFormData({
-                    email: "",
-                    password: ""
-                })
-            } else {
-                toast.warn('Invalid email or password !', {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
-            }
-            //  const response = await axios.post(
-            //   'https://yourapi.com/admin/login', // replace with your API
-            //   formData,
-            //   {
-            //     headers: {
-            //       'Content-Type': 'application/json',
-            //       'Authorization': 'Bearer YOUR_API_KEY_OR_TOKEN', // put your token here
-            //     },
-            //   }
-            // );
+            const response = await axios.post('http://localhost:8080/api/auth/login', formData);
+            const token = response.data.jwt;
+            
+            userId(response.data.userId)
+            setCurentUser(response.data.email)
+             
+            const roleTypes = response.data.roles;
+            // roleTypes.forEach(role => {
+            //     console.log("Role : ",role)
+            //     setCurRole(role);
+            // });
+            login(token,roleTypes);
 
+            toast.success('Login Successfully ', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            setFormData({
+                email: "",
+                password: ""
+            })
+            navigate("admindashboard");
         } catch (error) {
             console.error("Error : ", error)
             toast.error('Something went wrorng !', {

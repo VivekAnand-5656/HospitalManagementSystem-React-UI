@@ -46,7 +46,7 @@ const AdminDoctor = () => {
 
               <table className="w-full border-collapse  text-left text-[1rem]">
 
-                <thead className="bg-[#0612f1] text-white text-[1rem] p-2  ">
+                <thead className="bg-[#07275A] text-white text-[1rem] p-2  ">
                   <tr>
                     <th className="px-2 py-1">S.N.</th>
                     <th className="px-2 py-1">ID</th>
@@ -62,7 +62,7 @@ const AdminDoctor = () => {
                   {allDoctors.map((dtr, index) => (
                     <tr
                       key={index}
-                      className="border-b hover:bg-[#f3f4fb] transition"
+                      className="text-center border-t hover:bg-[#07275A] hover:scale-101 hover:text-white cursor-pointer ease-linear transition-all text-[0.8rem]  "
                     >
 
                       <td className="px-2 py-2">{index + 1}</td>
@@ -88,7 +88,7 @@ const AdminDoctor = () => {
                   departments.map((dpts, index) => (
                     <div
                       key={index}
-                      className="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer hover:scale-110 transition-all ease-linear "
+                      className="p-1.5 bg-[#fac400] text-white font-semibold rounded cursor-pointer hover:scale-110 transition-all ease-linear "
                     >
                       {dpts}
                     </div>
